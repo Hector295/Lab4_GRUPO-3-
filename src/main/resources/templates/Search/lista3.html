@@ -13,11 +13,25 @@
         <h1>Empleados por Departamento</h1>
             <table class="table">
                 <thead>
-                <!-- COMPLETAR -->
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Cargo</th>
+                        <th>Sueldo</th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
-                <!-- COMPLETAR -->
-                </tr>
+                    <tr th:each="empleado : ${listaReporteEmpleadosPorDepartamento}">
+                        <td th:text="${empleado.employee_id}"></td>
+                        <td th:text="${empleado.first_name}"></td>
+                        <td th:text="${empleado.last_name}"></td>
+                        <td th:text="${empleado.job_title}"></td>
+                        <td><a class="btn btn-primary"
+                               th:href="@{'/employee/edit' + '?id=' + ${empleado.employee_id}}">Editar</a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
