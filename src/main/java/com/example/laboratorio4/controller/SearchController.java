@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/Search")
 public class SearchController {
@@ -39,8 +41,13 @@ public class SearchController {
     }
 
     @GetMapping("/listar")
-    public String listarEmpleadoDep(@ModelAttribute("employees") Employees employees Model model) {
-        model.addAttribute("listaReporteEmpleadosPorDepartamento", employeesRepository.obtenerListaReporteEmpleadosPorDepartamento());
+    public String listarEmpleadoDep(@ModelAttribute("employees") Employees employees, Model model, @RequestParam("id") int id) {
+        Optional<Employees> optionalEmployees = employeesRepository.findById(id);
+        if (optionalEmployees.isPresent()){
+            employees = optionalEmployees.get();
+            model.addAttribute("employees", employees);
+            model.addAttribute("listaReporteEmpleadosPorDepartamento", employeesRepository.obtenerListaReporteEmpleadosPorDepartamento(id));
+        }
         return "/Search/lista3";
 
     }

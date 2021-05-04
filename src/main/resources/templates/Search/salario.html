@@ -27,7 +27,7 @@
                         <td th:text="${registro2.department_name}"></td>
                         <td th:text="${registro2.salary}"></td>
                         <td><a class="btn btn-primary"
-                               th:href="@{'/Search/listar' + '?department_id=' + ${registro2.getDepartment_id()}}">Info</a>
+                               th:href="@{'/Search/listar' + '?id=' + ${registro2.department_id}}">Info</a>
                         </td>
                     </tr>
                 </tbody>
