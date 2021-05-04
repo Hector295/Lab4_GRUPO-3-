@@ -108,10 +108,10 @@ public class EmployeeController {
 
     }
 
-    @PostMapping("/search")
-    public String buscar (){
+   // @PostMapping("/search")
+    //public String buscar (){
 
         //COMPLETAR
-    }
+    //}
 
 }
