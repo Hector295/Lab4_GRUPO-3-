@@ -18,31 +18,33 @@ public class Employees {
     private int employee_id;
 
     @Column(nullable = false)
-    @Size(max=20,message = "El nombre no puede tener más de 20 caracteres")
+    @Size(max = 20, message = "El nombre no puede tener más de 20 caracteres")
     @NotBlank(message = "No puede ser vacío")
     private String first_name;
 
     @Column(nullable = false)
-    @Size(max=25,message = "El apellido no puede tener más de 25 caracteres")
+    @Size(max = 25, message = "El apellido no puede tener más de 25 caracteres")
     @NotBlank(message = "No puede ser vacío")
     private String last_name;
 
     @Column(nullable = false)
-    @Size(max=25,message = "El email no puede tener más de 25 caracteres")
+    @Size(max = 25, message = "El email no puede tener más de 25 caracteres")
     @NotBlank(message = "No puede ser vacío")
-    @Pattern(regexp="^(.+)@(.+)$", message="Ingrese un mail con el formato: 'ejemplo@correo.com'")
+    @Pattern(regexp = "^(.+)@(.+)$", message = "Ingrese un mail con el formato: 'ejemplo@correo.com'")
     private String email;
 
 
     @Column(nullable = false)
-    @Size(min=8,message = "El email debe tener un mínimo de 8 caracteres.")
+    @Size(min = 8, message = "El email debe tener un mínimo de 8 caracteres.")
     @NotBlank(message = "No puede ser vacío")
     private String password;
 
-    @Size(max=40,message = "El telefono no puede tener más de 20 caracteres")
+    @Size(max = 40, message = "El telefono no puede tener más de 20 caracteres")
     private String phone_number;
 
-    private String job_id;
+    @ManyToOne
+    @JoinColumn(name = "job_id")
+    private Jobs job;
 
     @Column(nullable = false)
     @NotBlank(message = "No puede ser vacío")
@@ -54,9 +56,14 @@ public class Employees {
     private double commission_pct;
 
     private int manager_id;
-    private int departmentId;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Departments departments;
+
     private int enabled;
     private LocalDateTime hire_date;
+
 
     public String getFirst_name() {
         return first_name;
@@ -80,14 +87,6 @@ public class Employees {
 
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
-    }
-
-    public String getJob_id() {
-        return job_id;
-    }
-
-    public void setJob_id(String job_id) {
-        this.job_id = job_id;
     }
 
     public double getCommission_pct() {
@@ -130,14 +129,6 @@ public class Employees {
         this.salary = salary;
     }
 
-    public int getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(int departmentId) {
-        this.departmentId = departmentId;
-    }
-
     public int getEnabled() {
         return enabled;
     }
@@ -161,5 +152,21 @@ public class Employees {
 
     public void setHire_date(LocalDateTime hire_date) {
         this.hire_date = hire_date;
+    }
+
+    public Jobs getJob() {
+        return job;
+    }
+
+    public void setJob(Jobs job) {
+        this.job = job;
+    }
+
+    public Departments getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(Departments departments) {
+        this.departments = departments;
     }
 }

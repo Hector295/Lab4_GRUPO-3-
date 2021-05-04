@@ -13,7 +13,15 @@ public class Countries {
     private String countryname;
     @ManyToOne
     @JoinColumn(name = "region_id")
-    private Regions regionid;
+    private Regions regions;
+
+    public Regions getRegions() {
+        return regions;
+    }
+
+    public void setRegions(Regions regions) {
+        this.regions = regions;
+    }
 
     public String getId() {
         return id;
@@ -31,11 +39,4 @@ public class Countries {
         this.countryname = countryname;
     }
 
-    public Regions getRegionid() {
-        return regionid;
-    }
-
-    public void setRegionid(Regions regionid) {
-        this.regionid = regionid;
-    }
 }

@@ -16,7 +16,7 @@ public class Departments {
     private Employees managerid;
     @ManyToOne
     @JoinColumn(name = "location_id")
-    private Locations locationid;
+    private Locations locations;
 
     public int getId() {
         return id;
@@ -42,11 +42,11 @@ public class Departments {
         this.managerid = managerid;
     }
 
-    public Locations getLocationid() {
-        return locationid;
+    public Locations getLocations() {
+        return locations;
     }
 
-    public void setLocationid(Locations locationid) {
-        this.locationid = locationid;
+    public void setLocations(Locations locations) {
+        this.locations = locations;
     }
 }
