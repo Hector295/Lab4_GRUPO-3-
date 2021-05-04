@@ -3,6 +3,7 @@ package com.example.laboratorio4.entity;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Entity
@@ -14,7 +15,7 @@ public class Employees {
 
     @Column(nullable = false)
     @NotBlank(message = "No puede ser vacío")
-    private int employeeId;
+    private int employee_id;
 
     @Column(nullable = false)
     @Size(max=20,message = "El nombre no puede tener más de 20 caracteres")
@@ -41,8 +42,6 @@ public class Employees {
     @Size(max=40,message = "El telefono no puede tener más de 20 caracteres")
     private String phone_number;
 
-    private LocalDateTime hire_date;
-
     private String job_id;
 
     @Column(nullable = false)
@@ -56,6 +55,8 @@ public class Employees {
 
     private int manager_id;
     private int departmentId;
+    private int enabled;
+    private LocalDateTime hire_date;
 
     public String getFirst_name() {
         return first_name;
@@ -81,14 +82,6 @@ public class Employees {
         this.phone_number = phone_number;
     }
 
-    public LocalDateTime getHire_date() {
-        return hire_date;
-    }
-
-    public void setHire_date(LocalDateTime hire_date) {
-        this.hire_date = hire_date;
-    }
-
     public String getJob_id() {
         return job_id;
     }
@@ -111,14 +104,6 @@ public class Employees {
 
     public void setManager_id(int manager_id) {
         this.manager_id = manager_id;
-    }
-
-    public int getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
     }
 
     public String getEmail() {
@@ -161,5 +146,20 @@ public class Employees {
         this.enabled = enabled;
     }
 
-    private int enabled;
+
+    public int getEmployee_id() {
+        return employee_id;
+    }
+
+    public void setEmployee_id(int employee_id) {
+        this.employee_id = employee_id;
+    }
+
+    public LocalDateTime getHire_date() {
+        return hire_date;
+    }
+
+    public void setHire_date(LocalDateTime hire_date) {
+        this.hire_date = hire_date;
+    }
 }
