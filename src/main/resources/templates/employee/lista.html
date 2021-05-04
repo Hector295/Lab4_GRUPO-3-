@@ -11,9 +11,10 @@
 <body>
     <div class="container">
         <h1>Lista de Empleados</h1>
-        <a class="btn btn-primary mt-4 mb-4" th:href="@{}">Nuevo Empleado</a>  <!-- COMPLETAR -->
+        <a class="btn btn-primary mt-4 mb-4" th:href="@{'/employees/new'}">Nuevo Empleado</a>  <!-- COMPLETAR -->
+
         <!-- COMPLETAR -->
-        </form>
+
         <!-- COMPLETAR -->
              <table class="table">  <!-- COMPLETAR -->
                 <thead>
@@ -31,14 +32,14 @@
                 <tbody>
                 <tr th:each="employee, info : ${listaEmployee}">
                     <td th:text="${info.index + 1}"></td>
-                    <td th:text="${employee.firstname}"></td>
-                    <td th:text="${employee.lastname}"></td>
-                    <td th:text="${employee.jobid.jobtitle}"></td>
-                    <td th:text="${employee.departmentid.departmentname}"></td>
-                    <td th:text="${employee.departmentid.locationid.city}"></td>
-                    <td><a class="btn btn-primary" th:href="@{'/employee/edit' + '?id=' + ${employee.employeeid}}">Editar</a>
+                    <td th:text="${employee.first_name}"></td>
+                    <td th:text="${employee.last_name}"></td>
+                    <td th:text="${employee.job.getJobtitle()}"></td>
+                    <td th:text="${employee.getDepartments().getDepartmentname()}"></td>
+                    <td th:text="${employee.getDepartments().getLocations().getCity()}"></td>
+                    <td><a class="btn btn-primary" th:href="@{'/employees/edit' + '?id=' + ${employee.employee_id}}">Editar</a>
                     </td>
-                    <td><a class="btn btn-danger" th:href="@{'/employee/delete' + '?id=' + ${employee.employeeid}}">Borrar</a>
+                    <td><a class="btn btn-danger" th:href="@{'/employees/delete' + '?id=' + ${employee.employee_id}}">Borrar</a>
                     </td>
                 </tr>
                 </tbody>
