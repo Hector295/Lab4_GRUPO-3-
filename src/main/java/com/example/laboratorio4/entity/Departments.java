@@ -1,6 +1,7 @@
 package com.example.laboratorio4.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="departments")
@@ -17,6 +18,17 @@ public class Departments {
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Locations locations;
+
+    public List<Employees> getListaEmpleadosPorDepartamento() {
+        return listaEmpleadosPorDepartamento;
+    }
+
+    public void setListaEmpleadosPorDepartamento(List<Employees> listaEmpleadosPorDepartamento) {
+        this.listaEmpleadosPorDepartamento = listaEmpleadosPorDepartamento;
+    }
+
+    @OneToMany(mappedBy = "departments")
+    private List<Employees> listaEmpleadosPorDepartamento;
 
     public int getId() {
         return id;

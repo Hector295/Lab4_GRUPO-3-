@@ -48,12 +48,11 @@ public class Employees {
 
     @Column(nullable = false)
     @NotBlank(message = "No puede ser vacío")
-    @Digits(integer = 8,fraction = 2)
+    @Digits(integer = 8,fraction = 2, message = "Debe ingresar un número")
     @Positive (message = "Debe ser mayor a 0")
     private double salary;
 
-    @Digits(integer = 2,fraction = 2)
-    private double commission_pct;
+
 
     private int manager_id;
 
@@ -89,13 +88,7 @@ public class Employees {
         this.phone_number = phone_number;
     }
 
-    public double getCommission_pct() {
-        return commission_pct;
-    }
 
-    public void setCommission_pct(double commission_pct) {
-        this.commission_pct = commission_pct;
-    }
 
     public int getManager_id() {
         return manager_id;

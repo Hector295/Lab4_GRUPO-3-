@@ -27,7 +27,8 @@
                         <td th:text="${empleado.employee_id}"></td>
                         <td th:text="${empleado.first_name}"></td>
                         <td th:text="${empleado.last_name}"></td>
-                        <td th:text="${empleado.job_title}"></td>
+                        <td th:text="${empleado.job.jobtitle}"></td>
+                        <td th:text="${#numbers.formatDecimal(empleado.salary,0,0)}"></td>
                         <td><a class="btn btn-primary"
                                th:href="@{'/employee/edit' + '?id=' + ${empleado.employee_id}}">Editar</a>
                         </td>

@@ -1,6 +1,5 @@
 package com.example.laboratorio4.repository;
 
-import com.example.laboratorio4.Dtos.ReporteEmpleadosPorDepartamento;
 import com.example.laboratorio4.Dtos.ReporteMayorSalarioDto;
 import com.example.laboratorio4.Dtos.ReportePorDepartamento;
 import com.example.laboratorio4.entity.Employees;
@@ -14,7 +13,7 @@ import java.util.List;
 public interface EmployeesRepository extends JpaRepository<Employees, Integer> {
 
 
-    @Query(value = "select e.first_name, e.last_name, e.hire_date, jh.end_date, j.job_title\n" +
+    @Query(value = "select e.first_name, e.last_name, DATE_FORMAT(e.hire_date, '%d-%m-%Y') as 'inicio', DATE_FORMAT(jh.end_date, '%d-%m-%Y') as 'fin', j.job_title\n" +
             "from employees e\n" +
             "inner join job_history jh on (e.employee_id=jh.employee_id)\n" +
             "inner join jobs j on (e.job_id=j.job_id)\n" +
@@ -27,11 +26,14 @@ public interface EmployeesRepository extends JpaRepository<Employees, Integer> {
             "group by department_id", nativeQuery = true)
     List<ReportePorDepartamento> obtenerListaReportePorDepartamento();
 
-    @Query(value = "select employees.employee_id, employees.first_name, employees.last_name, jobs.job_title, \n" +
-            "truncate(employees.salary, 0) as salary\n" +
-            "from employees, jobs, departments\n" +
-            "where employees.job_id=jobs.job_id and employees.department_id= ? ", nativeQuery = true)
-    List<ReporteEmpleadosPorDepartamento> obtenerListaReporteEmpleadosPorDepartamento(int id);
+
+    @Query(value = "select e.first_name, e.last_name, DATE_FORMAT(e.hire_date, '%d-%m-%Y') as 'inicio', DATE_FORMAT(jh.end_date, '%d-%m-%Y') as 'fin', j.job_title\n" +
+            "from employees e\n" +
+            "inner join job_history jh on (e.employee_id=jh.employee_id)\n" +
+            "inner join jobs j on (e.job_id=j.job_id)\n" +
+            "where salary = ?", nativeQuery = true)
+
+    List<ReporteMayorSalarioDto> busquedaPorSalario(int salary);
 
 
 }

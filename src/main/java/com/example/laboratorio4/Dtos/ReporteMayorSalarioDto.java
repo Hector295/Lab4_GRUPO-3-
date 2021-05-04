@@ -5,8 +5,8 @@ import java.util.Date;
 public interface ReporteMayorSalarioDto {
     String getFirst_name();
     String getLast_name();
-    Date getHire_date();
-    Date getEnd_date();
+    String getInicio();
+    String getFin();
     String getJob_title();
 
 }

@@ -11,7 +11,16 @@
     <body>
         <div class="container">
             <h1>Empleados con Mayor Salario en la Empresa</h1>
-            <!-- COMPLETAR -->
+            <form class="input-group mb-lg-3" method="post" th:action="@{/Search/busqueda}">                <!-- COMPLETAR -->
+                <input type="text" class="form-control" name="salary" id="salary" placeholder="Salario a buscar"/>
+                <div class="input-group-append">
+                    <button class="btn btn-danger" type="submit">Buscar</button>
+                    <a class="btn btn-primary" th:href="@{/Search/Salario}">Limpiar</a>
+                    <a class="btn btn-primary" th:href="@{'/Search'}">Regresar</a>
+                </div>
+            </form>
+            <div class="alert alert-danger" th:if="${validacionTexto}" th:text="${validacionTexto}" role="alert">
+            </div>
             <table class="table">
                 <thead>
                     <tr>
@@ -26,8 +35,8 @@
                     <tr th:each="registro1 : ${listaReporteMayorSalario}">
                         <td th:text="${registro1.first_name}"></td>
                         <td th:text="${registro1.last_name}"></td>
-                        <td th:text="${registro1.hire_date}"></td>
-                        <td th:text="${registro1.end_date}"></td>
+                        <td th:text="${registro1.inicio}"></td>
+                        <td th:text="${registro1.fin}"></td>
                         <td th:text="${registro1.job_title}"></td>
                     </tr>
                 </tbody>
