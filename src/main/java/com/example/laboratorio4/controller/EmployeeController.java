@@ -39,7 +39,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/new")
-    public String nuevoEmployeeForm() {
+    public String nuevoEmployeeForm(@ModelAttribute("employee") Employees employees) {
         //COMPLETAR
         return "employee/Frm";
     }
@@ -85,7 +85,7 @@ public class EmployeeController {
         if (optionalEmployees.isPresent()) {
             employees = optionalEmployees.get();
             model.addAttribute("shipper", employees);
-            return "employee/newFrm";
+            return "employee/Frm";
         } else {
             return "redirect:/employees";
         }

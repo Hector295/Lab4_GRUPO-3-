@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<div class="container">
+    <h2 th:text="${employees.employee_id == 0? 'Nuevo Empleado' : 'Editar Empleado'}"></h2>
+    <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
+
+    <form method="post" th:action="@{'/employee/save'}" th:object="${employees}">
+        <input th:field="*{employee_id}" type="hidden"/>
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input th:field="*{first_name}" type="text" class="form-control"/>
+            <!-- Se muestra el error en rojo que da el DataBinding en BindingResult -->
+            <div class="text-danger" th:if="${#fields.hasErrors('first_name')}"
+                 th:errors="*{first_name}"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Apellido</label>
+            <input th:field="*{last_name}" type="text" class="form-control"/>
+            <!-- Se muestra el error en rojo que da el DataBinding en BindingResult -->
+            <div class="text-danger" th:if="${#fields.hasErrors('last_name')}"
+                 th:errors="*{last_name}"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <input th:field="*{password}" type="text" class="form-control"/>
+            <!-- Se muestra el error en rojo que da el DataBinding en BindingResult -->
+            <div class="text-danger" th:if="${#fields.hasErrors('password')}"
+                 th:errors="*{password}"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Correo</label>
+            <input th:field="*{email}" type="text" class="form-control"/>
+            <!-- Se muestra el error en rojo que da el DataBinding en BindingResult -->
+            <div class="text-danger" th:if="${#fields.hasErrors('email')}"
+                 th:errors="*{email}"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Salario</label>
+            <input th:field="*{salary}" type="text" class="form-control"/>
+            <!-- Se muestra el error en rojo que da el DataBinding en BindingResult -->
+            <div class="text-danger" th:if="${#fields.hasErrors('salary')}"
+                 th:errors="*{salary}"></div>
+        </div>
+
+        <a th:href="@{'/employees'}" class="btn btn-danger">Cancelar</a>
+        <!-- Se muestra Registrar o Actualizar el Producto -->
+        <button type="submit" class="btn btn-primary" th:text="${employees.employee_id == 0? 'Registrar' : 'Actualizar'}"></button>
+    </form>
+
+
+
+</div>
+</body>
+</html>
