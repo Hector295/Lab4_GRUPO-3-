@@ -12,7 +12,6 @@ public class Employees {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(nullable = false)
     @NotBlank(message = "No puede ser vacío")
     private int employee_id;
@@ -52,9 +51,17 @@ public class Employees {
     @Positive (message = "Debe ser mayor a 0")
     private double salary;
 
+    @ManyToOne
+    @JoinColumn(name= "manager_id")
+    private Employees manager;
 
+    public Employees getManager() {
+        return manager;
+    }
 
-    private int manager_id;
+    public void setManager(Employees manager) {
+        this.manager = manager;
+    }
 
     @ManyToOne
     @JoinColumn(name = "department_id")
@@ -86,16 +93,6 @@ public class Employees {
 
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
-    }
-
-
-
-    public int getManager_id() {
-        return manager_id;
-    }
-
-    public void setManager_id(int manager_id) {
-        this.manager_id = manager_id;
     }
 
     public String getEmail() {
